@@ -15,11 +15,14 @@ package Worker.Test_Data.Tests is
    procedure Test_Work2_42c428 (Gnattest_T : in out Test);
    --  worker.ads:4:4:Work2
 
+   procedure Test_Work3_a5415e (Gnattest_T : in out Test);
+   --  worker.ads:5:4:Work3
+
    procedure Test_Reset_State_dbaa3e (Gnattest_T : in out Test);
-   --  worker.ads:5:4:Reset_State
+   --  worker.ads:6:4:Reset_State
 
    procedure Test_Get_State_b4077a (Gnattest_T : in out Test);
-   --  worker.ads:7:4:Get_State
+   --  worker.ads:8:4:Get_State
 
 end Worker.Test_Data.Tests;
 --  end read only

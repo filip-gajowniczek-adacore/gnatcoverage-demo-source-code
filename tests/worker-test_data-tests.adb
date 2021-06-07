@@ -58,6 +58,31 @@ package body Worker.Test_Data.Tests is
    --  worker.ads:4:4:Work2
 --  end read only
 
+   begin
+
+      Reset_State;
+      Work1;
+      Work2;
+
+      AUnit.Assertions.Assert
+        (Get_State = 0,
+         "Work 2 does not round down during division.");
+
+
+
+--  begin read only
+   end Test_Work2;
+--  end read only
+
+
+--  begin read only
+   procedure Test_Work3 (Gnattest_T : in out Test);
+   procedure Test_Work3_a5415e (Gnattest_T : in out Test) renames Test_Work3;
+--  id:2.2/a5415e95780e1c84/Work3/1/0/
+   procedure Test_Work3 (Gnattest_T : in out Test) is
+   --  worker.ads:5:4:Work3
+--  end read only
+
       pragma Unreferenced (Gnattest_T);
 
    begin
@@ -67,7 +92,7 @@ package body Worker.Test_Data.Tests is
          "Test not implemented.");
 
 --  begin read only
-   end Test_Work2;
+   end Test_Work3;
 --  end read only
 
 
@@ -76,16 +101,17 @@ package body Worker.Test_Data.Tests is
    procedure Test_Reset_State_dbaa3e (Gnattest_T : in out Test) renames Test_Reset_State;
 --  id:2.2/dbaa3e524fa73843/Reset_State/1/0/
    procedure Test_Reset_State (Gnattest_T : in out Test) is
-   --  worker.ads:5:4:Reset_State
+   --  worker.ads:6:4:Reset_State
 --  end read only
 
       pragma Unreferenced (Gnattest_T);
 
    begin
 
+      Reset_State;
       AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+        (Get_State = 0,
+         "Reset doesn't reset to zero");
 
 --  begin read only
    end Test_Reset_State;
@@ -97,7 +123,7 @@ package body Worker.Test_Data.Tests is
    procedure Test_Get_State_b4077a (Gnattest_T : in out Test) renames Test_Get_State;
 --  id:2.2/b4077a4283c8378f/Get_State/1/0/
    procedure Test_Get_State (Gnattest_T : in out Test) is
-   --  worker.ads:7:4:Get_State
+   --  worker.ads:8:4:Get_State
 --  end read only
 
       pragma Unreferenced (Gnattest_T);
