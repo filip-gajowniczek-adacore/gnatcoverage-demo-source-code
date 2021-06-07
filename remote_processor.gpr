@@ -1,0 +1,40 @@
+project Remote_Processor is
+
+   for Source_Dirs use ("src");
+   for Object_Dir use "obj";
+   for Main use ("remote_processor.adb");
+   type Target_Type is
+      ("NATIVE", "STM32F429");
+   Target : Target_Type := external ("TARGET", "NATIVE");
+
+   case Target is
+
+      when "NATIVE" =>
+         for Runtime ("ada") use "native";
+         for Languages use ("Ada");
+
+      when "STM32F429" =>
+         for Target use "arm-eabi";
+         for Runtime ("ada") use "ravenscar-sfp-stm32f4";
+         for Languages use ("Ada");
+   end case;
+
+   package Ide is
+
+      case Target is
+
+         when "NATIVE" =>
+
+         when "STM32F429" =>
+            for Connection_Tool use "st-util";
+            for Program_Host use "localhost:4242";
+            for Communication_Protocol use "remote";
+      end case;
+   end Ide;
+
+   package Gnattest is
+      for Tests_Root use "../tests";
+   end Gnattest;
+
+end Remote_Processor;
+
