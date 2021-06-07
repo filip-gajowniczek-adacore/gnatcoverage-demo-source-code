@@ -12,8 +12,12 @@ package body Worker is
    procedure Work2 is 
    begin
       State := State/2;
-      
    end Work2;
+   
+   procedure Work3 is 
+   begin
+      State := State*State;
+   end Work3;
    
    procedure Reset_State is 
    begin

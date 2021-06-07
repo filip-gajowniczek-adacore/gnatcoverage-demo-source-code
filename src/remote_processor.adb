@@ -13,16 +13,14 @@ begin
    while Cycle_Counter <= 15 loop
       Cycle_Counter := Cycle_Counter + 1;
 
-      if Cycle_Counter mod 3 = 0 then
-         Work1;
-      end if;
-
-      if Cycle_Counter mod 5 = 0 then
-         Work2;
-      end if;
-
       if Get_State > 20 then
          Reset_State;
+      elsif Cycle_Counter mod 3 /= 0 then
+         Work1;
+      elsif Get_State mod 4 /= 0 or Cycle_Counter mod 17 = 0 then
+         Work3;
+      elsif Get_State mod 12 /= 0 then
+         Work2;
       end if;
 
       Put_Line ("State: " & Get_State'Image);

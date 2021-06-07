@@ -36,5 +36,10 @@ project Remote_Processor is
       for Tests_Root use "../tests";
    end Gnattest;
 
+   package Ide_Coverage is
+      for Level_Run use "stmt+mcdc";
+      for Level_Coverage use "stmt+mcdc";
+   end Ide_Coverage;
+
 end Remote_Processor;
 
