@@ -7,6 +7,7 @@
 
 with AUnit.Assertions; use AUnit.Assertions;
 with System.Assertions;
+with hardware.Stub_Data; use hardware.Stub_Data;
 
 --  begin read only
 --  id:2.2/00/
@@ -37,13 +38,18 @@ package body Worker.Test_Data.Tests is
    --  worker.ads:2:4:Do_Work
 --  end read only
 
-      pragma Unreferenced (Gnattest_T);
+      Fake_State : Hardware.State_Type  := (X =>1, Y=>4);
 
    begin
-
+      
+      Set_Stub_Get_State_bb47db_608cb2 (Fake_State);
+      
+      Do_Work;
+      
       AUnit.Assertions.Assert
-        (Gnattest_Generated.Default_Assert_Value,
-         "Test not implemented.");
+        (Stub_Data_Action2_10b344_608cb2.Stub_Counter = 1 and
+         Stub_Data_Action4_45670c_608cb2.Stub_Counter = 0,
+         "Work for X=1, Y=4 incorrect");
 
 --  begin read only
    end Test_Do_Work;

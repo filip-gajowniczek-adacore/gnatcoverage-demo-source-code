@@ -3,6 +3,7 @@
 
 --  begin read only
 with Gnattest_Generated;
+with AUnit.Test_Caller;
 
 package hardware.Test_Data.Tests is
 
@@ -23,6 +24,8 @@ package hardware.Test_Data.Tests is
 
    procedure Test_Action4_45670c (Gnattest_T : in out Test);
    --  hardware.ads:18:4:Action4
+
+   package Caller is new AUnit.Test_Caller (Test);
 
 end hardware.Test_Data.Tests;
 --  end read only

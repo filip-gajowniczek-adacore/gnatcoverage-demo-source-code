@@ -3,6 +3,7 @@
 
 --  begin read only
 with Gnattest_Generated;
+with AUnit.Test_Caller;
 
 package Worker.Test_Data.Tests is
 
@@ -11,6 +12,8 @@ package Worker.Test_Data.Tests is
 
    procedure Test_Do_Work_a62d6e (Gnattest_T : in out Test);
    --  worker.ads:2:4:Do_Work
+
+   package Caller is new AUnit.Test_Caller (Test);
 
 end Worker.Test_Data.Tests;
 --  end read only
