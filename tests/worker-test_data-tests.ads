@@ -9,20 +9,8 @@ package Worker.Test_Data.Tests is
    type Test is new GNATtest_Generated.GNATtest_Standard.Worker.Test_Data.Test
    with null record;
 
-   procedure Test_Work1_acd4ff (Gnattest_T : in out Test);
-   --  worker.ads:3:4:Work1
-
-   procedure Test_Work2_42c428 (Gnattest_T : in out Test);
-   --  worker.ads:4:4:Work2
-
-   procedure Test_Work3_a5415e (Gnattest_T : in out Test);
-   --  worker.ads:5:4:Work3
-
-   procedure Test_Reset_State_dbaa3e (Gnattest_T : in out Test);
-   --  worker.ads:6:4:Reset_State
-
-   procedure Test_Get_State_b4077a (Gnattest_T : in out Test);
-   --  worker.ads:8:4:Get_State
+   procedure Test_Do_Work_a62d6e (Gnattest_T : in out Test);
+   --  worker.ads:2:4:Do_Work
 
 end Worker.Test_Data.Tests;
 --  end read only

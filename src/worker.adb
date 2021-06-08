@@ -1,32 +1,33 @@
+with Hardware; use Hardware;
 with Ada.Text_IO; use Ada.Text_IO;
 
 package body Worker is
 
    State : Integer := 0;
    
-   procedure Work1 is 
-   begin 
-      State := State + 1;
-   end Work1;
-   
-   procedure Work2 is 
+   procedure Do_Work is
+      State : State_Type := Get_State;
    begin
-      State := State/2;
-   end Work2;
-   
-   procedure Work3 is 
-   begin
-      State := State*State;
-   end Work3;
-   
-   procedure Reset_State is 
-   begin
-      State := 0;
-   end Reset_State;
-
-   function Get_State return Integer is 
-   begin
-      return State;
-   end Get_State;
+      
+      Action2;
+      
+      if State.X mod 2 = 0 then
+         Put_Line ("Performing Action 1");
+         Action1;
+      end if;
+      
+      if State.X mod 2 = 0 and then State.Y mod 2 = 0 then
+         Put_Line ("Performing Action 4");
+         Action4;
+      end if;
+      
+      if State.X > State.Y then 
+         Put_Line ("Performing Action 3");
+         Action3;
+      end if;
+      
+      Put_Line ( "X:" & State.X'Image & " Y:" & State.Y'Image );
+      
+   end Do_Work;
    
 end Worker;
