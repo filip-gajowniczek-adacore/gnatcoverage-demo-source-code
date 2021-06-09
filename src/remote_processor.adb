@@ -1,3 +1,5 @@
+pragma Profile(Ravenscar);
+
 with Worker; use Worker;
 with Ada.Text_IO; use Ada.Text_IO;
 

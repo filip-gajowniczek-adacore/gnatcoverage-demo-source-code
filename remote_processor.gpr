@@ -10,8 +10,9 @@ project Remote_Processor is
    case Target is
 
       when "NATIVE" =>
-         for Runtime ("ada") use "native";
+         for Runtime ("ada") use "zfp-mpc8641";
          for Languages use ("Ada");
+         for Target use "powerpc-elf";
 
       when "STM32F429" =>
          for Target use "arm-eabi";
