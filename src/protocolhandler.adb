@@ -18,22 +18,20 @@ package body ProtocolHandler is
       Alarm_Activated : Boolean;
    begin 
       
-      Read1_Flag := Get_Input (Seconds(5), C1(1));
-      Read2_Flag := Get_Input (Seconds(5), C2(1));
+      Get_Input (Seconds(5), C1(1));
+      Get_Input (Seconds(5), C2(1));
       
-      if Read1_Flag and then not Read2_Flag then 
-         if C1(1) in '0' .. '9' then
-            Alarm_Activated := Alarm.Update (Integer'Value(C1));
-         end if;
+      if C1(1) in '0' .. '9' and then C2(2) in '1' .. '9' then
+         Alarm_Activated := Alarm.Update (Integer'Value(C1));
+         Alarm_Activated := Alarm.Update(Integer'Value(C2));
       end if;
 
-      if Read2_Flag then
-         if C1(1) = '1' and then C2(1) = '0' then
+      if C2(1) = '0' then
+         if C1(1) = '1' then 
             Alarm_Activated := Alarm.Update (10);
-         elsif C1(1) in '0' .. '9' and then C2(1) in '0' .. '9' then
-            Alarm_Activated := Alarm.Update(Integer'Value(C1));
-            Alarm_Activated := Alarm.Update(Integer'Value(C2));
          end if;
+      elsif C1(1) in '0' .. '9' then 
+         Alarm_Activated := Alarm.Update (Integer'Value(C1));
       end if;
             
       Put_Line ("New monitor value: " & Alarm.Get_Monitor'Image);
@@ -42,10 +40,10 @@ package body ProtocolHandler is
          Put_line("Alarm activated!");
       end if;
       
-      return true;
+      return True;
       
    exception
-         when others => return false;
+         when others => return False;
    end Run;
 
 end ProtocolHandler;

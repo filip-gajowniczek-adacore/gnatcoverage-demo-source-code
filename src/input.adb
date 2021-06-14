@@ -7,18 +7,16 @@ package body Input is
    Read_Character : Character;
    RX_Flag : Boolean;
    
-   function Get_Input( timeout : Time_Span; Out_Character : out Character )
-                      return Boolean is
+   procedure Get_Input( timeout : Time_Span; Out_Character : out Character ) is
    begin
       delay until Clock + timeout;
       
       if RX_Flag then 
          Out_Character := Read_Character;
          RX_Flag := false;
-         return True;
       else
          Running := False;
-         return False;
+         raise Timeout_Exception;
       end if;
    end Get_Input;
    
@@ -27,7 +25,7 @@ package body Input is
    task body Read_Task is
    begin
       while Running loop
-         Get( Read_Character );
+         Get (Read_Character);
          RX_Flag := true;
          delay until Clock + Milliseconds(1);
       end loop;
