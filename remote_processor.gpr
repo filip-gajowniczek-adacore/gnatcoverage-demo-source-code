@@ -10,9 +10,7 @@ project Remote_Processor is
    case Target is
 
       when "NATIVE" =>
-         for Runtime ("ada") use "zfp-mpc8641";
          for Languages use ("Ada");
-         for Target use "powerpc-elf";
 
       when "STM32F429" =>
          for Target use "arm-eabi";
@@ -41,6 +39,14 @@ project Remote_Processor is
       for Level_Run use "stmt+mcdc";
       for Level_Coverage use "stmt+mcdc";
    end Ide_Coverage;
+
+   package Compiler is
+      for Switches ("ada") use ("-gnatRs");
+   end Compiler;
+
+   package Codepeer is
+      for Switches use ("-level", "3");
+   end Codepeer;
 
 end Remote_Processor;
 
