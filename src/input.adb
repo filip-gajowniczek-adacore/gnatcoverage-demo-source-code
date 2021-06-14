@@ -3,6 +3,7 @@ with Ada.Text_IO; Use Ada.Text_IO;
 
 package body Input is
    
+   Running : Boolean;
    Read_Character : Character;
    RX_Flag : Boolean;
    
@@ -16,13 +17,16 @@ package body Input is
          RX_Flag := false;
          return True;
       else
+         Running := False;
          return False;
       end if;
    end Get_Input;
    
+   
+   
    task body Read_Task is
    begin
-      while True loop
+      while Running loop
          Get( Read_Character );
          RX_Flag := true;
          delay until Clock + Milliseconds(1);

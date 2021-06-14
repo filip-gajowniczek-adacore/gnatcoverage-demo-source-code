@@ -1,5 +1,7 @@
 package ProtocolHandler is
 
-   procedure Run;
+   Timeout_Exception : Exception;
+
+   function Run return Boolean;
 
 end ProtocolHandler;

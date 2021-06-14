@@ -10,4 +10,4 @@ package body Alarms is
       return Object.Monitor;
    end Get_Monitor;
 
-end Alarm;
+end Alarms;
