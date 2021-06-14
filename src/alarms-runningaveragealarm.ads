@@ -8,6 +8,8 @@ package Alarms.RunningAverageAlarm is
    function Update (Object : in out Running_Average_Alarm_Type;
                     Value : Integer) return Boolean;
    
+   procedure Reset (Object : in out Running_Average_Alarm_Type);
+   
 private
    
    package Integer_Running_Average is new RunningAverage( T => Integer );

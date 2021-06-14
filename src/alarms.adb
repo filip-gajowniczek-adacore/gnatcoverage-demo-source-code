@@ -1,6 +1,11 @@
 pragma Ada_2012;
 package body Alarms is
 
+   function Is_Alarming (Object : Alarm_Type) return Boolean is
+   begin
+      return Object.Monitor > Object.Threshold;
+   end Is_Alarming;
+
    -----------------
    -- Get_Monitor --
    -----------------

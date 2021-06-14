@@ -1,5 +1,10 @@
 package body Alarms.RunningAverageAlarm is
 
+   procedure Reset (Object : in out Running_Average_Alarm_Type) is
+   begin
+      Object.Monitor := 0;
+   end Reset;
+
    ------------
    -- Update --
    ------------
@@ -10,8 +15,7 @@ package body Alarms.RunningAverageAlarm is
    is
    begin
       Add_Sample(Object.Averager, Value);
-      Object.Monitor := Integer(Get_Average(Object.Averager));
-      return Object.Monitor > Object.Threshold;
+      return Integer(Get_Average(Object.Averager)) > Object.Threshold;
    end Update;
 
 end Alarms.RunningAverageAlarm;
