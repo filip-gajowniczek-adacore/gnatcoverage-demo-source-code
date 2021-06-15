@@ -10,6 +10,9 @@ package Alarms.RunningAverageAlarm is
    
    procedure Reset (Object : in out Running_Average_Alarm_Type);
    
+   overriding function Is_Alarming (Object : Running_Average_Alarm_Type)
+                                    return Boolean;
+   
 private
    
    package Integer_Running_Average is new RunningAverage( T => Integer );

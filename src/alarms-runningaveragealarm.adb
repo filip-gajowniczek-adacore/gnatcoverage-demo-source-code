@@ -15,7 +15,13 @@ package body Alarms.RunningAverageAlarm is
    is
    begin
       Add_Sample(Object.Averager, Value);
-      return Integer(Get_Average(Object.Averager)) > Object.Threshold;
+      return Object.Is_Alarming;
    end Update;
+
+   function Is_Alarming (Object : Running_Average_Alarm_Type)
+                         return Boolean is
+   begin
+      return Integer(Get_Average(Object.Averager)) >= Object.Threshold;
+   end;
 
 end Alarms.RunningAverageAlarm;

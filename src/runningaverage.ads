@@ -10,8 +10,8 @@ package RunningAverage is
 private
    
    type Averager_Type is record
-      Accumulation : T;
-      Sample_Count : Integer;
+      Accumulation : T := 0;
+      Sample_Count : Integer := 0;
    end record;
    
 end RunningAverage;
