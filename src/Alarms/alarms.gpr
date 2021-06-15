@@ -1,0 +1,12 @@
+with "../RunningAverage/runningaverage.gpr";
+
+project Alarms is
+
+   for Source_Dirs use (".");
+   for Languages use ("Ada");
+   for Library_Name use "alarms";
+   for Library_Kind use "dynamic";
+   for Object_Dir use "../../obj";
+
+end Alarms;
+
