@@ -1,0 +1,13 @@
+with "dependencies/RunningAverage/runningaverage.gpr";
+
+project Alarms is
+
+   for Source_Dirs use ("src");
+   for Languages use ("Ada");
+   for Library_Name use "alarms";
+   for Library_Kind use "dynamic";
+   for Object_Dir use "obj";
+   for Runtime ("ada") use "native";
+
+end Alarms;
+

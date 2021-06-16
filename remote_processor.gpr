@@ -1,5 +1,6 @@
-with "src/Input/input.gpr";
-with "src/Alarms/alarms.gpr";
+with "dependencies/Math/math.gpr";
+with "dependencies/Input/input.gpr";
+with "dependencies/Alarms/alarms.gpr";
 
 project Remote_Processor is
 
