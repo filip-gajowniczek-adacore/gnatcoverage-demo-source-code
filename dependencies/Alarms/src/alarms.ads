@@ -10,6 +10,8 @@ package Alarms is
    
    function Is_Alarming (Object : Alarm_Type) return Boolean;
    
+   function Margin (Object : Alarm_Type) return Integer;
+   
    function Update (Object : in out Alarm_Type; Value : Integer)
                     return Boolean is abstract with
      Post'Class => 

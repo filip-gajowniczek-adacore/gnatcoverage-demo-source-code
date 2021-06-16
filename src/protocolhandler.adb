@@ -1,5 +1,7 @@
 with Input; use Input;
 with Alarms.RunningAverageAlarm; use Alarms.RunningAverageAlarm;
+with Math; use Math;
+
 with Ada.Text_IO; use Ada.Text_IO;
 
 with Ada.Real_Time; use Ada.Real_Time;
@@ -9,6 +11,7 @@ package body ProtocolHandler is
    subtype Digit_Type is Character range '0' .. '9';
    
    Alarm : Running_Average_Alarm_Type(5);
+   Accumulation : Integer := 0;
    
    function Run return Boolean is
       C1 : String(1..1);
@@ -44,4 +47,9 @@ package body ProtocolHandler is
          when others => return False;
    end Run;
 
+   function Get_Accumulation return Integer is 
+   begin
+      return Accumulation;
+   end Get_Accumulation;
+   
 end ProtocolHandler;

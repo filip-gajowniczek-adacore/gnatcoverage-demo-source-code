@@ -4,4 +4,6 @@ package ProtocolHandler is
 
    function Run return Boolean;
 
+   function Get_Accumulation return Integer;
+
 end ProtocolHandler;

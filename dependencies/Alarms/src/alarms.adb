@@ -15,4 +15,9 @@ package body Alarms is
       return Object.Monitor;
    end Get_Monitor;
 
+   function Margin (Object : Alarm_Type) return Integer is
+   begin
+      return Object.Threshold - Object.Monitor;
+   end Margin;
+
 end Alarms;
