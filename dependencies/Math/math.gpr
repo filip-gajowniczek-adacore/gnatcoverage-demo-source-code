@@ -10,5 +10,7 @@ project Math is
       for Tests_Root use "../tests";
    end Gnattest;
 
+   for Runtime ("ada") use "native";
+
 end Math;
 
