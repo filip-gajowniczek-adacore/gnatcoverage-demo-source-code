@@ -2,6 +2,7 @@ pragma Profile(Ravenscar);
 
 with Ada.Text_IO; use Ada.Text_IO;
 with ProtocolHandler; use ProtocolHandler;
+with Input; use Input;
 
 
 procedure Remote_Processor is
@@ -12,6 +13,8 @@ begin
    while Run loop
       null;
    end loop;
+
+   Stop;
 
    Put_Line ("Remote Processor Terminating");
 

@@ -3,9 +3,15 @@ with Ada.Text_IO; Use Ada.Text_IO;
 
 package body Input is
    
-   Running : Boolean;
+   Running : Boolean := True;
+   
+   procedure Stop is
+   begin
+      Running := False;
+   end Stop;
+   
    Read_Character : Character;
-   RX_Flag : Boolean;
+   RX_Flag : Boolean := False;
    
    procedure Get_Input( timeout : Time_Span; Out_Character : out Character ) is
    begin
@@ -15,7 +21,6 @@ package body Input is
          Out_Character := Read_Character;
          RX_Flag := false;
       else
-         Running := False;
          raise Timeout_Exception;
       end if;
    end Get_Input;
@@ -25,8 +30,10 @@ package body Input is
    task body Read_Task is
    begin
       while Running loop
-         Get (Read_Character);
-         RX_Flag := true;
+         if not RX_Flag then 
+            Get (Read_Character);
+            RX_Flag := true;
+         end if;
          delay until Clock + Milliseconds(1);
       end loop;
    end Read_Task;

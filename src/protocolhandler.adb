@@ -30,9 +30,9 @@ package body ProtocolHandler is
       if C2(1) = '0' then
          if C1(1) = '1' then 
             Alarm_Activated := Alarm.Update (10);
+         elsif C1(1) in '0' .. '9' then 
+            Alarm_Activated := Alarm.Update (Integer'Value(C1));
          end if;
-      elsif C1(1) in '0' .. '9' then 
-         Alarm_Activated := Alarm.Update (Integer'Value(C1));
       end if;
             
       Put_Line ("New monitor value: " & Alarm.Get_Monitor'Image);
@@ -44,7 +44,10 @@ package body ProtocolHandler is
       return True;
       
    exception
-         when others => return False;
+      when Input.Timeout_Exception => return False;
+      when others => 
+         Put_Line("Unknown Exception");
+         return False;
    end Run;
 
    function Get_Accumulation return Integer is 
