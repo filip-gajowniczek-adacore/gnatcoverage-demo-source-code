@@ -1,5 +1,3 @@
-pragma Profile(Ravenscar);
-
 with Ada.Text_IO; use Ada.Text_IO;
 with ProtocolHandler; use ProtocolHandler;
 with Input; use Input;
@@ -14,6 +12,7 @@ begin
       null;
    end loop;
 
+   abort Read_Task;
    Put_Line ("Remote Processor Terminating");
 
 exception
