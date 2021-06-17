@@ -14,8 +14,6 @@ begin
       null;
    end loop;
 
-   Stop;
-
    Put_Line ("Remote Processor Terminating");
 
 exception

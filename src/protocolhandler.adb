@@ -4,8 +4,6 @@ with Math; use Math;
 
 with Ada.Text_IO; use Ada.Text_IO;
 
-with Ada.Real_Time; use Ada.Real_Time;
-
 package body ProtocolHandler is
 
    subtype Digit_Type is Character range '0' .. '9';
@@ -19,8 +17,12 @@ package body ProtocolHandler is
       Alarm_Activated : Boolean;
    begin 
       
-      Get_Input (Seconds(5), C1(1));
-      Get_Input (Seconds(5), C2(1));
+      Get_Input (C1(1));
+      Get_Input (C2(1));
+      
+      if C1(1) = 'q' or C2(1) = 'q' then
+         return False;
+      end if;
       
       if C1(1) in '0' .. '9' and then C2(1) in '1' .. '9' then
          Alarm_Activated := Alarm.Update (Integer'Value(C1));
@@ -43,11 +45,6 @@ package body ProtocolHandler is
       
       return True;
       
-   exception
-      when Input.Timeout_Exception => return False;
-      when others => 
-         Put_Line("Unknown Exception");
-         return False;
    end Run;
 
    function Get_Accumulation return Integer is 
