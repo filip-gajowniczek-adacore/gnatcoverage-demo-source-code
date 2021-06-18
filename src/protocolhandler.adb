@@ -10,41 +10,51 @@ package body ProtocolHandler is
    Alarm : Running_Average_Alarm_Type(5);
    Accumulation : Integer := 0;
    
-   function Run return Boolean is
-      C1 : String(1..1);
-      C2 : String(1..1);
-      Alarm_Activated : Boolean;
-   begin 
+   
+   type Digit_Type is mod 2;
+   Digit : Digit_Type;
+   
+   subtype Single_Char_String is String(1..1);
+   Previous_C : Single_Char_String;
+   
+   procedure Process( C : Single_Char_String ) is
+      Alarm_Activated : Boolean := False;
+   begin
       
-      Get_Input ( Seconds(3), C1(1));
-      Get_Input ( Seconds(0), C2(1));
-      
-      if C1(1) = 'q' or C2(1) = 'q' then
-         return False;
-      end if;
-      
-      if C1(1) in '0' .. '9' and then C2(1) in '1' .. '9' then
-         Alarm_Activated := Alarm.Update (Integer'Value(C1));
-         Alarm_Activated := Alarm.Update(Integer'Value(C2));
-      end if;
-
-      if C2(1) = '0' then
-         if C1(1) = '1' then 
-            Alarm_Activated := Alarm.Update (10);
-         elsif C1(1) in '0' .. '9' then 
-            Alarm_Activated := Alarm.Update (Integer'Value(C1));
+      if Digit = 0 and then C(1) /= '1' then
+         if C(1) in '0' .. '9' then
+            Alarm_Activated := Alarm.Update(Integer'Value(C));
          end if;
+      elsif Digit = 1 and then Previous_C(1) = '1' then
+         Alarm_Activated := Alarm.Update(10);
       end if;
-            
-      Put_Line ("New monitor value: " & Alarm.Get_Monitor'Image);
+      
+      Digit := Digit_Type'Succ(Digit);
+      Previous_C := C;
       
       if Alarm_Activated then
          Put_line("Alarm activated!");
       end if;
+   end Process;
+   
+   function Run return Boolean is      
+      Return_Value : Boolean := True;
+      C1 : Single_Char_String := " ";
+      C2 : Single_Char_String := " ";
+   begin 
+      declare
+      begin
+         Get_Input ( Seconds(3), C1(1));
+         Get_Input ( Seconds(0), C2(1));
+      exception
+         when others => Return_Value := False;
+      end;
       
-      return True;
-   exception
-      when others => return False;
+      Process(C1);
+      Process(C2);
+      
+      return Return_Value;
+
    end Run;
 
    function Get_Accumulation return Integer is 

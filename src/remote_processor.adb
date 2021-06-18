@@ -12,9 +12,7 @@ begin
       null;
    end loop;
 
-   abort Read_Task;
    Put_Line ("Remote Processor Terminating");
+   abort Read_Task;
 
-exception
-      when others => null;
 end Remote_Processor;
